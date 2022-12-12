@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Countdown.MainPage">
+
+    <StackLayout>
+        <Frame BackgroundColor="#191964" CornerRadius="0" HeightRequest="80">
+            <StackLayout Orientation="Horizontal">
+                <Label VerticalOptions="Center" HorizontalOptions="StartAndExpand" Text="Day Countdown" TextColor="White" FontSize="24"/>
+                <Button HorizontalOptions="EndAndExpand" Text="❤️" Clicked="GoToCreditsView" BackgroundColor="#191964" FontSize="24"/>
+            </StackLayout>
+        </Frame>
+        <Label HorizontalOptions="Center" Text="You haven't set any active countdowns yet" FontSize="16" Padding="30,10,30,10"/>
+        <Button HorizontalOptions="End" VerticalOptions="EndAndExpand" Text="+" CornerRadius="100" BackgroundColor="#191964" TextColor="White" FontSize="48" Margin="20,20,20,20" HeightRequest="100" WidthRequest="100" Clicked="AddNewCountdown"/>
+    </StackLayout>
+
+</ContentPage>
