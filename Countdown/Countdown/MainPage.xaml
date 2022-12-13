@@ -12,14 +12,17 @@
                 <Button HorizontalOptions="EndAndExpand" Text="❤️" Clicked="GoToCreditsView" BackgroundColor="#191964" FontSize="24"/>
             </StackLayout>
         </Frame>
-        <StackLayout x:Name="CountdownLayout"
-                     Spacing="10"
-                     Padding="10"
-                     WidthRequest="370"
-                     RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0}"
-                     RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.15}">
-            <Label HorizontalOptions="Center" Text="You haven't set any active countdowns yet" FontSize="16" Padding="30,10,30,10"/>
-        </StackLayout>
+        <ScrollView 
+            HeightRequest="680"
+            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0}"
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.15}">
+            <StackLayout x:Name="CountdownLayout"
+                             Spacing="10"
+                             Padding="10"
+                             WidthRequest="370">
+                <Label HorizontalOptions="Center" Text="You haven't set any active countdowns yet" FontSize="16" Padding="30,10,30,10"/>
+            </StackLayout>
+        </ScrollView>
         <Button HorizontalOptions="End" VerticalOptions="EndAndExpand" Text="+" CornerRadius="100" BackgroundColor="#191964" TextColor="White" FontSize="48" Margin="20,20,20,20" HeightRequest="100" WidthRequest="100" Clicked="AddNewCountdown"
                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=.63}"
                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.82}"/>

@@ -3,12 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Countdown.NewCountdownPage">
     <ContentPage.Content>
-        <StackLayout>
-            
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            <Button Text="Create" Clicked="CreateCountdown" />
+        <StackLayout BackgroundColor="LightGray">
+            <Label VerticalOptions="StartAndExpand" HeightRequest="1"/>
+            <Label Text="Create new countdown"
+                   FontSize="Title" VerticalOptions="Center" TextColor="Black"/>
+            <Entry x:Name="Name" Keyboard="Text" ReturnType="Next" Placeholder="Name" BackgroundColor="White" FontSize="Title"/>
+            <Editor x:Name="Description" Placeholder="Description" HeightRequest="160" BackgroundColor="White"/>
+            <StackLayout Orientation="Horizontal" WidthRequest="370">
+                <Label Text="Due date" VerticalOptions="Center"/>
+                <DatePicker x:Name="DueDate" WidthRequest="300" VerticalOptions="Center" BackgroundColor="White"/>
+            </StackLayout>
+            <Button Text="Create" Clicked="CreateCountdown" VerticalOptions="EndAndExpand" BackgroundColor="#191964" TextColor="White"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
