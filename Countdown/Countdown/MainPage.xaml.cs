@@ -10,6 +10,27 @@ using Xamarin.Forms.Xaml;
 
 namespace Countdown
 {
+    public class CountdownListElement
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string Created { get; set; }
+        public string Due { get; set; }
+        public int RemainingDays { get; set; }
+
+        public CountdownListElement(int Id, string Name, string Description, DateTime Created, DateTime Due)
+        {
+            this.Id = Id;
+            this.Name = Name;
+            this.Description = Description;
+            this.Created = Created.ToLongDateString() + ", " + Created.ToShortTimeString();
+            this.Due = Due.ToShortDateString();
+            this.RemainingDays = calculateRemainingDays();
+        }
+
+        public int calculateRemainingDays() { return (DateTime.Parse(Due)-DateTime.Now).Days; }
+    }
     public partial class MainPage : ContentPage
     {
         public MainPage()
@@ -17,8 +38,19 @@ namespace Countdown
             InitializeComponent();
 
             UpdateCountdownList();
+
+
+            List<CountdownListElement> countdownElements= new List<CountdownListElement>(db.Table<CountdownTable>().Count());
+            foreach (CountdownTable elem in db.Table<CountdownTable>())
+            {
+                countdownElements.Add(new CountdownListElement(elem.Id, elem.Name, elem.Description, elem.Created, elem.Due));
+            }
+
+            CountdownLayout.ItemsSource = countdownElements;
         }
         int count = 0;
+        SQLiteConnection db = new SQLiteConnection(Constants.DatabasePath);
+
         void Handle_Clicked(object sender, System.EventArgs e)
         {
             count++;
@@ -36,12 +68,9 @@ namespace Countdown
         }
         void UpdateCountdownList()
         {
-            
             // Access or create DB
-            var db = new SQLiteConnection(Constants.DatabasePath);
             if (db.Table<CountdownTable>().Count() != 0)
             {
-                CountdownLayout.Children.Clear();
                 var countdownRecords = db.Table<CountdownTable>();
                 foreach (var record in countdownRecords)
                 {
@@ -74,7 +103,7 @@ namespace Countdown
                         }
                         }
                     };
-                    CountdownLayout.Children.Add(countdownCard);
+                    
                 }
             }
         }

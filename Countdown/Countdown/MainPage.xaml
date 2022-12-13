@@ -12,17 +12,41 @@
                 <Button HorizontalOptions="EndAndExpand" Text="❤️" Clicked="GoToCreditsView" BackgroundColor="#191964" FontSize="24"/>
             </StackLayout>
         </Frame>
-        <ScrollView 
-            HeightRequest="680"
+        <Label 
             RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0}"
-            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.15}">
-            <StackLayout x:Name="CountdownLayout"
-                             Spacing="10"
-                             Padding="10"
-                             WidthRequest="370">
-                <Label HorizontalOptions="Center" Text="You haven't set any active countdowns yet" FontSize="16" Padding="30,10,30,10"/>
-            </StackLayout>
-        </ScrollView>
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.15}"
+            HorizontalOptions="Center" Text="You haven't set any active countdowns yet" FontSize="16" Padding="30,10,30,10"/>
+
+        <ListView x:Name="CountdownLayout" HasUnevenRows="True"  
+                      HeightRequest="680" 
+                      RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0}"
+                      RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.15}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell >
+                        <Frame CornerRadius="10" BackgroundColor="CornflowerBlue" WidthRequest="350" HeightRequest="200" Margin="10,10,10,10" HorizontalOptions="Center">
+                            <StackLayout Orientation="Vertical" >
+                                <Label Text="{Binding Name}" FontAttributes="Bold" />
+                                <Label Text="{Binding Description}" />
+                                <Label Text="Remaining..."/>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                                    <Label Text="{Binding RemainingDays}" FontSize="48"  />
+                                    <Label Text="days" VerticalOptions="Center"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Due on "/>
+                                    <Label Text="{Binding Due}" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Created"/>
+                                    <Label Text="{Binding Created}" />
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
         <Button HorizontalOptions="End" VerticalOptions="EndAndExpand" Text="+" CornerRadius="100" BackgroundColor="#191964" TextColor="White" FontSize="48" Margin="20,20,20,20" HeightRequest="100" WidthRequest="100" Clicked="AddNewCountdown"
                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=.63}"
                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.82}"/>
